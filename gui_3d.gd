@@ -22,6 +22,8 @@ func _ready():
 	if node_quad.get_surface_material(0).params_billboard_mode == 0:
 		set_process(false)
 
+func reload_texture():
+	node_quad.get_surface_material(0).albedo_texture = node_viewport.get_texture()
 
 func _process(_delta):
 	# NOTE: Remove this function if you don't plan on using billboard settings.

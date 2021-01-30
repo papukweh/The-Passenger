@@ -6,6 +6,9 @@ var lines : Array = [
 ]
 var in_dialogue = false
 var current_dialogue = ""
+var current_event = ""
+
+signal event_finished
 
 func _ready():
 	pass
@@ -13,8 +16,9 @@ func _ready():
 	#start()
 
 
-func init(lines_arg: Array):
+func init(event_arg: String, lines_arg: Array):
 	lines = lines_arg.duplicate()
+	current_event = event_arg
 
 
 func start():
@@ -27,8 +31,8 @@ func next():
 	if next:
 		set_dialogue(next)
 	else:
-		in_dialogue = false
 		$CanvasLayer/Text.set_text("")
+		$Timer.start()
 
 
 func set_dialogue(text: String):
@@ -58,3 +62,8 @@ func _input(event: InputEvent):
 			$CanvasLayer/Tween.set_speed_scale(5.0)
 		else:
 			next()
+
+
+func _on_Timer_timeout():
+	in_dialogue = false
+	emit_signal("event_finished", current_event)

@@ -4,7 +4,7 @@
 [ext_resource path="res://scenes/Outside_House.gd" type="Script" id=2]
 [ext_resource path="res://objects/Dialogue_Base.tscn" type="PackedScene" id=3]
 
-[node name="Outside_House" type="Node2D"]
+[node name="Scene" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="Objects" type="Node2D" parent="."]
