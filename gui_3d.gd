@@ -14,6 +14,9 @@ var last_mouse_pos2D = null
 onready var node_viewport = $Viewport
 onready var node_quad = $Quad
 onready var node_area = $Quad/Area
+onready var node_base2d = $Viewport/Scene
+
+signal scene_loaded
 
 func _ready():
 	node_area.connect("mouse_entered", self, "_mouse_entered_area")
@@ -22,8 +25,16 @@ func _ready():
 	if node_quad.get_surface_material(0).params_billboard_mode == 0:
 		set_process(false)
 
-func reload_texture():
+func change_scene(scene):
+	$Viewport/Animation2D.play("fade_out")
+	yield($Viewport/Animation2D, "animation_finished")
+	var previous_scene = node_base2d.get_child(0)
+	previous_scene.queue_free()
+	node_base2d.add_child(scene.instance())
 	node_quad.get_surface_material(0).albedo_texture = node_viewport.get_texture()
+	$Viewport/Animation2D.play_backwards("fade_out")
+	emit_signal("scene_loaded")
+
 
 func _process(_delta):
 	# NOTE: Remove this function if you don't plan on using billboard settings.
