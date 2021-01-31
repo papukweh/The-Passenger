@@ -44,6 +44,13 @@ var events = {
 		'item': 'key',
 		'depends_on': 'go_safe',
 		'repeat': false
+	},
+	'escape': {
+		'dialogue': [
+			"You use the key and finally escape this hellish place"
+		],
+		'depends_on': 'safe',
+		'repeat': false
 	}
 }
 var events_seen = {
@@ -68,6 +75,7 @@ var scenes = {
 	'hallway': load('res://scenes/Hallway.tscn'),
 	'bedroom': load('res://scenes/Bedroom.tscn'),
 	'bathroom': load('res://scenes/Bathroom.tscn'),
+	'credits': load("res://scenes/Credits.tscn")
 }
 
 func _ready():
@@ -77,8 +85,6 @@ func _ready():
 	$SFX.stream = load("res://assets/sfx/door shutting car engine start.wav")
 	$SFX.play()
 	load_scene("intro")
-	#$Animation3D.play("test")
-	#$Objects/safe_with_key/AnimationPlayer.play("open_door")
 
 
 func load_scene(scene_id: String):
@@ -170,6 +176,10 @@ func _on_Event_Finished(event: String):
 		has_paper1 = false
 		has_paper2 = false
 		events_seen['can_open_safe'] = true
+	elif event == 'escape':
+		load_scene('credits')
+		$BGM.stream = load("res:/assets/bgm/horror ending song.wav")
+		$BGM.play()
 	elif event == 'safe':
 		start_chase()
 	elif event == 'go_house':
