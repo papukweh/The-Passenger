@@ -59,7 +59,8 @@ const itens = {
 		'correct': 'upstairs_boarded_wall',
 		'use_message': [
 			'You remove the screws, one by one',
-			'The board comes out easily'
+			'The board comes out easily',
+			"You reach out and grab another piece of paper"
 		]
 	}
 }
@@ -94,6 +95,14 @@ func _on_Item_Selected(toggle: bool, index: int):
 		selected_item = null
 
 
+func remove_item():
+	for i in range(len(inventory)):
+		if inventory[i] == selected_item:
+			slots[i].hide()
+			break
+	selected_item = null
+
+
 func add_item(item_id: String):
 	var item = itens[item_id]
 	if not item.get('fake', false):
@@ -101,6 +110,7 @@ func add_item(item_id: String):
 		inventory.append(item)
 		$CanvasLayer/Itens.get_node("Slot"+str(index)).show()
 		$CanvasLayer/Itens.get_node("Slot"+str(index)).texture_normal = load(item['thumbnail'])
+		$CanvasLayer/Itens.get_node("Slot"+str(index)).texture_pressed = load(item['thumbnail'].replace('.png', '_selected.png'))
 		$CanvasLayer/Itens.get_node("Slot"+str(index)).hint_tooltip = item['name']
 	return item
 

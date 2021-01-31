@@ -36,20 +36,13 @@ const events = {
 			"You examine the picture",
 			"It comes off in your hands!",
 			"Behind it, there's gray safe",
-			"'How cliche...'"
+			"'How cliche...'",
+			"You looked everywhere but couldn't find the key",
+			"'Maybe in here...?'"
 		],
 		'depends_on': 'bedroom_begin',
 		'repeat': false
 	}
-#	'safe': {
-#		'dialogue': [
-#			"You looked everywhere but couldn't find the key",
-#			"'Maybe in here...?'"
-#		],
-#		'item': 'safe',
-#		'depends_on': 'combination',
-#		'repeat': false
-#	},
 }
 
 onready var root = get_parent().get_parent().get_parent().get_parent()
