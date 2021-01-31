@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/3d/safe_with_key.dae" type="PackedScene" id=1]
+[ext_resource path="res://assets/3d/02 - Default.material" type="Material" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "open_door"
+length = 1.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("Door:rotation_degrees")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 145, 0 ) ]
+}
+
+[node name="safe_with_key" instance=ExtResource( 1 )]
+transform = Transform( 1.4, 0, 0, 0, 1.3523, -0.362347, 0, 0.362347, 1.3523, 0, 0, 0 )
+
+[node name="Door" parent="." index="1"]
+transform = Transform( 0.012709, 0, 0, 0, 0.0122535, -2.32831e-10, 0, 0, 0.012709, 0.145072, 0.330472, 0.189411 )
+
+[node name="Safebox_body" parent="." index="2"]
+material/0 = ExtResource( 2 )
+
+[node name="AnimationPlayer" parent="." index="3"]
+anims/open_door = SubResource( 1 )

@@ -14,6 +14,18 @@ const itens = {
 		'correct': '???',
 		'use_message': ['???']
 	},
+	'paper1': {
+		'name': 'Piece of paper',
+		'thumbnail': 'res://icon.png', #TODO: CHANGE THIS
+		'correct': '???',
+		'use_message': ['???']
+	},
+	'paper2': {
+		'name': 'Folded piece of paper',
+		'thumbnail': 'res://icon.png', #TODO: CHANGE THIS
+		'correct': '???',
+		'use_message': ['???']
+	},
 	'phone': {
 		'name': 'Phone',
 		'thumbnail': 'res://icon.png',

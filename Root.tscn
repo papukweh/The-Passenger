@@ -1,11 +1,14 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Root.gd" type="Script" id=1]
 [ext_resource path="res://gui_panel_3d.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/3d/key.dae" type="PackedScene" id=3]
-[ext_resource path="res://assets/3d/screwdriver.dae" type="PackedScene" id=4]
-[ext_resource path="res://assets/3d/phone.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/3d/safe_with_key.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/3d/paper1.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/3d/bottle.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/3d/screwdriver2.dae" type="PackedScene" id=7]
+[ext_resource path="res://assets/3d/paper2.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/3d/phone.tscn" type="PackedScene" id=9]
 
 [sub_resource type="ViewportTexture" id=1]
 viewport_path = NodePath("Viewport")
@@ -17,11 +20,12 @@ flags_unshaded = true
 flags_albedo_tex_force_srgb = true
 albedo_texture = SubResource( 1 )
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=8]
+resource_name = "acquire_bottle"
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("Objects/key:scale")
-tracks/0/interp = 1
+tracks/0/path = NodePath("Objects/bottle:translation")
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -29,10 +33,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector3( 0.01, 0.01, 0.01 ), Vector3( 0.05, 0.05, 0.05 ) ]
+"values": [ Vector3( -0.458723, -0.000989758, -0.42946 ), Vector3( -0.459, -0.001, 0.6 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Objects/key:translation")
+tracks/1/path = NodePath("Objects/bottle:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -41,7 +45,89 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector3( -0.214106, -0.106533, -0.66135 ), Vector3( -0.214106, -0.106533, 0.390636 ) ]
+"values": [ Vector3( 1, 1, 1 ), Vector3( 3, 3, 3 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Objects/key:translation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -0.149261, -0.259848, -1.26978 ), Vector3( -0.149, -0.26, 0.6 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Objects/key:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.01, 0.01, 0.01 ), Vector3( 0.03, 0.03, 0.03 ) ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "acquire_paper1"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Objects/paper1:translation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.0312479, -0.299474, -0.991073 ), Vector3( 0.031, -0.299, 0.6 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Objects/paper1:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.35, 0.5, 0.5 ), Vector3( 1.05, 1.5, 1 ) ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "acquire_paper2"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Objects/paper2:translation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.151, -0.105, -1.2 ), Vector3( 0.151, -0.105, 0.6 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Objects/paper2:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.1, 0.15, 0.15 ), Vector3( 0.3, 0.25, 0.25 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -49,15 +135,15 @@ resource_name = "acquire_phone"
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Objects/phone:translation")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
+"times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector3( -0.454626, -0.190005, -0.575021 ), Vector3( -0.454626, -0.190005, 0.445878 ) ]
+"values": [ Vector3( 0, 0, -0.124778 ), Vector3( 0.089, -0.238, 0.6 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Objects/phone:scale")
@@ -66,10 +152,70 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.4 ),
+"times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector3( 1, 1, 0.5 ), Vector3( 2, 2, 1 ) ]
+"values": [ Vector3( 0.1, 0.1, 0.1 ), Vector3( 0.2, 0.2, 0.2 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "acquire_screwdriver"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Objects/screwdriver:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.456471, -0.143652, -0.701953 ), Vector3( 0.456, -0.144, 0.6 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Objects/screwdriver:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 2, 2, 2 ), Vector3( 3, 3, 3 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "examine_safe"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Objects/safe_with_key:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 6.12874e-07, -0.172776, -0.940448 ), Vector3( 0, -0.173, 0.6 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "spin_bottle"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Objects/bottle:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 180, 0 ), Vector3( 0, 360, 0 ) ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -87,6 +233,38 @@ tracks/0/keys = {
 "values": [ Vector3( 0, 0, 0 ), Vector3( 0, 180, 0 ), Vector3( 0, 360, 0 ) ]
 }
 
+[sub_resource type="Animation" id=16]
+resource_name = "spin_paper1"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Objects/paper1:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 87.619, 0, 0 ), Vector3( 87.619, 360, 0 ) ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "spin_paper2"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Objects/paper2:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -180, 0, 0 ), Vector3( -180, 180, 0 ), Vector3( -180, 360, 0 ) ]
+}
+
 [sub_resource type="Animation" id=6]
 resource_name = "spin_phone"
 length = 2.0
@@ -100,7 +278,40 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1, 2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector3( 90, 0, 0 ), Vector3( 90, 180, 0 ), Vector3( 90, 360, 0 ) ]
+"values": [ Vector3( 0, 90, 0 ), Vector3( 0, 270, 0 ), Vector3( 0, 450, 0 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "spin_screwdriver"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Objects/screwdriver:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 180, 0 ), Vector3( 0, 360, 0 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "test"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Objects:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 180, 0 ), Vector3( 0, 360, 0 ) ]
 }
 
 [node name="Root" type="Spatial"]
@@ -121,17 +332,26 @@ directional_shadow_normal_bias = 0.2
 
 [node name="Objects" type="Spatial" parent="."]
 
-[node name="key" parent="Objects" instance=ExtResource( 3 )]
-transform = Transform( 0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, -0.214106, -0.106533, -0.66135 )
-
-[node name="screwdriver" parent="Objects" instance=ExtResource( 4 )]
-transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -0.0061779, -0.0642803, -0.615398 )
-
-[node name="phone" parent="Objects" instance=ExtResource( 5 )]
-transform = Transform( -1, -3.25841e-07, 2.65431e-14, 0, -1.62921e-07, -0.5, 3.25841e-07, -1, 8.14603e-08, -0.454626, -0.190005, -0.575021 )
-
 [node name="bottle" parent="Objects" instance=ExtResource( 6 )]
-transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.110401, 0, -0.333453 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.458723, -0.000989758, -0.42946 )
+
+[node name="key" parent="Objects" instance=ExtResource( 3 )]
+transform = Transform( 0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, -0.149261, -0.259848, -1.26978 )
+
+[node name="screwdriver" parent="Objects" instance=ExtResource( 7 )]
+transform = Transform( 2, 0, 1.30337e-06, 0, 2, 0, -1.30337e-06, 0, 2, 0.456471, -0.143652, -0.701953 )
+
+[node name="safe_with_key" parent="Objects" instance=ExtResource( 4 )]
+transform = Transform( 1.4, 0, 0, 0, 1.3523, -0.362347, 0, 0.362347, 1.3523, 6.12874e-07, -0.172776, -0.940448 )
+
+[node name="paper2" parent="Objects" instance=ExtResource( 8 )]
+transform = Transform( 0.1, 0, 0, 0, -0.15, 2.26494e-08, 0, -2.26494e-08, -0.15, 0.151, -0.105, -1.2 )
+
+[node name="paper1" parent="Objects" instance=ExtResource( 5 )]
+transform = Transform( 0.35, 3.2556e-07, 1.35367e-08, 0, 0.0207719, -0.499568, -2.28089e-07, 0.499568, 0.0207719, 0.0312479, -0.299474, -0.991073 )
+
+[node name="phone" parent="Objects" instance=ExtResource( 9 )]
+transform = Transform( -1.62921e-08, 0, 0.1, 0, 0.1, 0, -0.1, 0, -1.62921e-08, 0, 0, -0.124778 )
 
 [node name="GUIPanel3D" parent="." instance=ExtResource( 2 )]
 
@@ -139,10 +359,20 @@ transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.110401, 0, -0.333453 
 material/0 = SubResource( 2 )
 
 [node name="Animation3D" type="AnimationPlayer" parent="."]
+anims/acquire_bottle = SubResource( 8 )
 anims/acquire_key = SubResource( 3 )
+anims/acquire_paper1 = SubResource( 13 )
+anims/acquire_paper2 = SubResource( 14 )
 anims/acquire_phone = SubResource( 4 )
+anims/acquire_screwdriver = SubResource( 10 )
+anims/examine_safe = SubResource( 12 )
+anims/spin_bottle = SubResource( 9 )
 anims/spin_key = SubResource( 5 )
+anims/spin_paper1 = SubResource( 16 )
+anims/spin_paper2 = SubResource( 15 )
 anims/spin_phone = SubResource( 6 )
+anims/spin_screwdriver = SubResource( 11 )
+anims/test = SubResource( 7 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.5

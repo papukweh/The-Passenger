@@ -2,15 +2,17 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/living room.jpg-158c9fcdfff04c8f296afce22bcb5567.stex"
+path.s3tc="res://.import/acid_tex.jpeg-25e572878ea3ab2e5d97997df2a16320.s3tc.stex"
+path.etc2="res://.import/acid_tex.jpeg-25e572878ea3ab2e5d97997df2a16320.etc2.stex"
 metadata={
-"vram_texture": false
+"imported_formats": [ "s3tc", "etc2" ],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://assets/2d/living room.jpg"
-dest_files=[ "res://.import/living room.jpg-158c9fcdfff04c8f296afce22bcb5567.stex" ]
+source_file="res://assets/2d/textures/acid_tex.jpeg"
+dest_files=[ "res://.import/acid_tex.jpeg-25e572878ea3ab2e5d97997df2a16320.s3tc.stex", "res://.import/acid_tex.jpeg-25e572878ea3ab2e5d97997df2a16320.etc2.stex" ]
 
 [params]
 

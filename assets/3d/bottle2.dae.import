@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/bottle.dae-f72d6672ad073adf6ad9b57903af71b3.scn"
+path="res://.import/bottle2.dae-4d0fd9740b501bdf3d830d85724fdd4d.scn"
 
 [deps]
 
-source_file="res://assets/3d/bottle.dae"
-dest_files=[ "res://.import/bottle.dae-f72d6672ad073adf6ad9b57903af71b3.scn" ]
+source_file="res://assets/3d/bottle2.dae"
+dest_files=[ "res://.import/bottle2.dae-4d0fd9740b501bdf3d830d85724fdd4d.scn" ]
 
 [params]
 

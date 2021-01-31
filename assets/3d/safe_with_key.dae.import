@@ -2,18 +2,18 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/screwdriver.dae-4b151f4a24afc6cbc6199b3b53e96a41.scn"
+path="res://.import/safe_with_key.dae-c48214bd6295bdf23e278efc35d68bfa.scn"
 
 [deps]
 
-source_file="res://assets/3d/screwdriver.dae"
-dest_files=[ "res://.import/screwdriver.dae-4b151f4a24afc6cbc6199b3b53e96a41.scn" ]
+source_file="res://assets/3d/safe_with_key.dae"
+dest_files=[ "res://.import/safe_with_key.dae-c48214bd6295bdf23e278efc35d68bfa.scn" ]
 
 [params]
 
 nodes/root_type="Spatial"
 nodes/root_name="Scene Root"
-nodes/root_scale=0.001
+nodes/root_scale=1.0
 nodes/custom_script=""
 nodes/storage=0
 materials/location=1

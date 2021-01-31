@@ -11,6 +11,8 @@ func _ready():
 	inventory = $GUIPanel3D/Viewport/Inventory
 	dialogue.connect("event_finished", self, "_on_Event_Finished")
 	load_scene("res://scenes/Intro.tscn")
+	#$Animation3D.play("test")
+	$Objects/safe_with_key/AnimationPlayer.play("open_door")
 
 
 func load_scene(scenepath: String):
