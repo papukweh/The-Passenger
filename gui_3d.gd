@@ -33,6 +33,7 @@ func change_scene(scene):
 	node_base2d.add_child(scene.instance())
 	node_quad.get_surface_material(0).albedo_texture = node_viewport.get_texture()
 	$Viewport/Animation2D.play_backwards("fade_out")
+	yield($Viewport/Animation2D, "animation_finished")
 	emit_signal("scene_loaded")
 
 

@@ -1,13 +1,13 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://gui_3d.gd" type="Script" id=1]
 [ext_resource path="res://assets/2d/pexels-wendy-wei-1662570.jpg" type="Texture" id=2]
 [ext_resource path="res://Base2D.gd" type="Script" id=3]
 [ext_resource path="res://objects/Dialogue_Base.tscn" type="PackedScene" id=4]
+[ext_resource path="res://objects/Inventory.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Animation" id=6]
 resource_name = "fade_out"
-length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Scene:modulate")
 tracks/0/interp = 1
@@ -15,10 +15,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.6, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ) ]
+"values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ) ]
 }
 
 [sub_resource type="QuadMesh" id=1]
@@ -50,6 +50,8 @@ texture = ExtResource( 2 )
 anims/fade_out = SubResource( 6 )
 
 [node name="Dialogue" parent="Viewport" instance=ExtResource( 4 )]
+
+[node name="Inventory" parent="Viewport" instance=ExtResource( 5 )]
 
 [node name="Quad" type="MeshInstance" parent="."]
 mesh = SubResource( 1 )
