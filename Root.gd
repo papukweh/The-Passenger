@@ -5,6 +5,7 @@ const wrong_message = ["I don't think this will help me here..."]
 var dialogue = null
 var inventory = null
 var scene_loaded = false
+var first_item = true
 var events = {
 	'wrong_item': {
 		'dialogue': wrong_message,
@@ -35,7 +36,7 @@ func _ready():
 	dialogue = $GUIPanel3D/Viewport/Dialogue
 	inventory = $GUIPanel3D/Viewport/Inventory
 	dialogue.connect("event_finished", self, "_on_Event_Finished")
-	load_scene("hallway")
+	load_scene("kitchen")
 	#$Animation3D.play("test")
 	#$Objects/safe_with_key/AnimationPlayer.play("open_door")
 
@@ -87,7 +88,12 @@ func _on_Event_Finished(event: String):
 		var item = events[event]['item']
 		$Animation3D.playback_speed = 2.1
 		$Animation3D.play("acquire_"+item)
-		inventory.add_item(item)
+		item = inventory.add_item(item)
+		if first_item and not item.get('fake', false):
+			dialogue.init('first_item', [
+				'<Select the item in your inventory and interact to use it>'
+			])
+			first_item = false
 	elif event == 'go_house':
 		load_scene('outside')
 	elif event == 'go':

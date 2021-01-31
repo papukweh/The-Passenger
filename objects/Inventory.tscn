@@ -59,9 +59,9 @@ __meta__ = {
 
 [node name="Itens" type="HBoxContainer" parent="CanvasLayer"]
 margin_left = 315.0
-margin_top = 36.0
+margin_top = 32.0
 margin_right = 765.0
-margin_bottom = 87.0
+margin_bottom = 89.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -72,7 +72,7 @@ __meta__ = {
 process_priority = 10
 visible = false
 margin_right = 100.0
-margin_bottom = 75.0
+margin_bottom = 256.0
 rect_min_size = Vector2( 100, 0 )
 toggle_mode = true
 

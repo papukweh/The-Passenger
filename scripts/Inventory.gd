@@ -10,7 +10,7 @@ onready var slots = $CanvasLayer/Itens.get_children()
 const itens = {
 	'key': {
 		'name': 'Key',
-		'thumbnail': 'res://icon.png', #TODO: CHANGE THIS
+		'thumbnail': 'res://assets/2d/textures/key.png',
 		'correct': 'entrance_door',
 		'use_message': ['You manage to unlock the door and escape']
 	},
@@ -32,11 +32,12 @@ const itens = {
 		'name': 'Phone',
 		'thumbnail': 'res://icon.png',
 		'correct': '???',
-		'use_message': ['???']
+		'use_message': ['???'],
+		'fake': true
 	},
 	'bottle': {
 		'name': 'Bottle',
-		'thumbnail': 'res://icon.png',
+		'thumbnail': 'res://assets/2d/textures/bottle.png',
 		'correct': 'bathroom_sink',
 		'use_message': [
 			'You block the drain and carefully pours the solution in the messy sink',
@@ -45,7 +46,7 @@ const itens = {
 	},
 	'rusted_screwdriver': {
 		'name': 'Screwdriver (rusted)',
-		'thumbnail': 'res://icon.png',
+		'thumbnail': 'res://assets/2d/textures/screwdriver.png',
 		'correct': 'bathroom_sink',
 		'use_message': [
 			"You carefully dip the screwdriver's tip in the acid",
@@ -54,7 +55,7 @@ const itens = {
 	},
 	'screwdriver': {
 		'name': 'Screwdriver',
-		'thumbnail': 'res://icon.png',
+		'thumbnail': 'res://assets/2d/textures/screwdriver.png',
 		'correct': 'upstairs_boarded_wall',
 		'use_message': [
 			'You remove the screws, one by one',
@@ -101,7 +102,7 @@ func add_item(item_id: String):
 		$CanvasLayer/Itens.get_node("Slot"+str(index)).show()
 		$CanvasLayer/Itens.get_node("Slot"+str(index)).texture_normal = load(item['thumbnail'])
 		$CanvasLayer/Itens.get_node("Slot"+str(index)).hint_tooltip = item['name']
-
+	return item
 
 func _on_Area2D_mouse_entered():
 	print("entrou")
