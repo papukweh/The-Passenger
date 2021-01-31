@@ -9,7 +9,7 @@ const events = {
 		'dialogue': [
 			"You arrive at the house, but something seems amiss",
 			"'This house has seen better days, huh...'",
-			"You ring the doorbel repeatedly, yet no one seems to be home"
+			"You ring the doorbell repeatedly, yet no one seems to be home"
 		],
 		'depends_on': null
 	},
@@ -17,8 +17,7 @@ const events = {
 		'dialogue': [
 			"Seems like the door is open",
 			"I guess I'll just leave the phone inside", 
-			"Couldn't hurt, right?",
-			"It can't be trespassing if the door is open, anyway"
+			"Couldn't hurt, right?"
 		],
 		'depends_on': 'outside_begin'
 	}

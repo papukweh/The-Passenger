@@ -4,13 +4,15 @@ var current_event = 'begin'
 var events_seen = {
 	'office_begin': false,
 	'go_upstairs': false,
-	'window': false,
-	'desk': false
+	'office_window': false,
+	'office_desk': false
 }
 const events = {
 	'office_begin': {
 		'dialogue': [
-			""
+			"You enter a small office with a lone desk",
+			"You can feel a cold breeze coming in through the window",
+			"'Damn wind...'"
 		],
 		'depends_on': null,
 		'repeat': false
@@ -31,8 +33,11 @@ const events = {
 	},
 	'office_desk': {
 		'dialogue': [
-			"You examine the desk and find...",
+			"You examine the desk and find a small bottle",
+			"Looks to be some kind of rust removal solution",
+			"'This will be useful'"
 		],
+		'item': 'bottle',
 		'depends_on': 'office_begin',
 		'repeat': false
 	}

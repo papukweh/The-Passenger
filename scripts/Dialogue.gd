@@ -59,7 +59,7 @@ func get_length():
 func _input(event: InputEvent):
 	if event.is_action_pressed("left_click") and in_dialogue:
 		if $CanvasLayer/Tween.is_active():
-			$CanvasLayer/Tween.set_speed_scale(5.0)
+			$CanvasLayer/Tween.set_speed_scale(10.0)
 		else:
 			next()
 

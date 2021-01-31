@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Root.gd" type="Script" id=1]
 [ext_resource path="res://gui_panel_3d.tscn" type="PackedScene" id=2]
@@ -158,6 +158,34 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id=8]
+resource_name = "acquire_rusted_screwdriver"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Objects/screwdriver:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -0.46342, -0.143652, -0.701953 ), Vector3( -0.46, -0.144, 0.6 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Objects/screwdriver:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 2, 2, 2 ), Vector3( 3, 3, 3 ) ]
+}
+
+[sub_resource type="Animation" id=17]
 resource_name = "acquire_screwdriver"
 length = 0.5
 tracks/0/type = "value"
@@ -278,6 +306,22 @@ tracks/0/keys = {
 "values": [ Vector3( 0, 90, 0 ), Vector3( 0, 270, 0 ), Vector3( 0, 450, 0 ) ]
 }
 
+[sub_resource type="Animation" id=18]
+resource_name = "spin_rusted_screwdriver"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Objects/screwdriver:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 180, 0 ), Vector3( 0, 360, 0 ) ]
+}
+
 [sub_resource type="Animation" id=15]
 length = 2.0
 tracks/0/type = "value"
@@ -334,7 +378,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.458723, -0.000989758, -0.42
 transform = Transform( 0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, -0.149261, -0.259848, -1.26978 )
 
 [node name="screwdriver" parent="Objects" instance=ExtResource( 7 )]
-transform = Transform( 2, 0, 1.30337e-06, 0, 2, 0, -1.30337e-06, 0, 2, 0.456471, -0.143652, -0.701953 )
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0.456471, -0.143652, -0.701953 )
 
 [node name="safe_with_key" parent="Objects" instance=ExtResource( 4 )]
 transform = Transform( 1.4, 0, 0, 0, 1.3523, -0.362347, 0, 0.362347, 1.3523, 6.12874e-07, -0.172776, -0.940448 )
@@ -346,7 +390,7 @@ transform = Transform( 0.1, 0, 0, 0, -0.15, 2.26494e-08, 0, -2.26494e-08, -0.15,
 transform = Transform( 0.35, 3.2556e-07, 1.35367e-08, 0, 0.0207719, -0.499568, -2.28089e-07, 0.499568, 0.0207719, 0.0312479, -0.299474, -0.991073 )
 
 [node name="phone" parent="Objects" instance=ExtResource( 9 )]
-transform = Transform( -1.62921e-08, 0, 0.1, 0, 0.1, 0, -0.1, 0, -1.62921e-08, 0, 0, -0.124778 )
+transform = Transform( -4.37114e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.37114e-09, 0, 0, -0.124778 )
 
 [node name="GUIPanel3D" parent="." instance=ExtResource( 2 )]
 
@@ -359,13 +403,15 @@ anims/acquire_key = SubResource( 4 )
 anims/acquire_paper1 = SubResource( 5 )
 anims/acquire_paper2 = SubResource( 6 )
 anims/acquire_phone = SubResource( 7 )
-anims/acquire_screwdriver = SubResource( 8 )
+anims/acquire_rusted_screwdriver = SubResource( 8 )
+anims/acquire_screwdriver = SubResource( 17 )
 anims/examine_safe = SubResource( 9 )
 anims/spin_bottle = SubResource( 10 )
 anims/spin_key = SubResource( 11 )
 anims/spin_paper1 = SubResource( 12 )
 anims/spin_paper2 = SubResource( 13 )
 anims/spin_phone = SubResource( 14 )
+anims/spin_rusted_screwdriver = SubResource( 18 )
 anims/spin_screwdriver = SubResource( 15 )
 anims/test = SubResource( 16 )
 

@@ -4,6 +4,7 @@ const wrong_message = ["I don't think this will help me here..."]
 
 var dialogue = null
 var inventory = null
+var scene_loaded = false
 var events = {
 	'wrong_item': {
 		'dialogue': wrong_message,
@@ -34,13 +35,14 @@ func _ready():
 	dialogue = $GUIPanel3D/Viewport/Dialogue
 	inventory = $GUIPanel3D/Viewport/Inventory
 	dialogue.connect("event_finished", self, "_on_Event_Finished")
-	load_scene("intro")
+	load_scene("hallway")
 	#$Animation3D.play("test")
-	$Objects/safe_with_key/AnimationPlayer.play("open_door")
+	#$Objects/safe_with_key/AnimationPlayer.play("open_door")
 
 
 func load_scene(scene_id: String):
 	var scene = scenes[scene_id]
+	scene_loaded = false
 	$GUIPanel3D.change_scene(scene)
 	yield($GUIPanel3D, "scene_loaded")
 	yield(get_tree(), "idle_frame")
@@ -50,21 +52,27 @@ func load_scene(scene_id: String):
 			events[k] = current_scene.events[k]
 			events_seen[k] = current_scene.events_seen[k]
 	visited.append(scene_id)
+	scene_loaded = true
 	_Event_Triggered(scene_id+'_begin')
 
 
 func _Event_Triggered(event: String):
+	if not scene_loaded:
+		return
 	if inventory.selected_item:
 		var item = inventory.selected_item
 		if item['correct'] == event:
 			dialogue.init(event, item['use_message'])
 		else:
-			dialogue.init("wrong_item", inventory.wrong_message)
+			dialogue.init("wrong_item", wrong_message)
 		dialogue.start()
 	else:
 		var depends_on = events[event]['depends_on']
 		var repeat = events[event].get('repeat') or not events_seen[event]
 		var can_play = (not depends_on or events_seen[depends_on]) and repeat
+		if event.begins_with("go") and not can_play:
+			can_play = true
+			events[event]['dialogue'] = [""]
 		print("triggered {e}, can_play {b}".format({'e':event, 'b':can_play}))
 		if events[event]['dialogue']:
 			if not dialogue.in_dialogue and can_play:
@@ -110,4 +118,4 @@ func _on_AnimationPlayer_animation_finished(anim_name: String):
 		$Timer.start()
 		yield($Timer, "timeout")
 		$Animation3D.playback_speed = 2.0
-		$Animation3D.play_backwards("acquire_key")
+		$Animation3D.play_backwards("acquire_"+obj)

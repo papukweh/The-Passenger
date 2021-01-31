@@ -11,7 +11,9 @@ const events = {
 		'dialogue': [
 			"It's 2 A.M",
 			"After delivering the final passenger for the day, you are very much looking forward to a good night of sleep",
-			"However..."
+			"However... It seems something was left on the passenger seat",
+			"'I'd better look at the rearview",
+			"<Left Click: Interact>"
 		],
 		'depends_on': null,
 		'repeat': false
@@ -19,16 +21,16 @@ const events = {
 	'intro_rearview': {
 		'dialogue': [
 			"You look really tired",
-			"'I don't think this is the best time to be appreciating my baggy eyes'",
-			"Oh, look. A key!"
+			"Squinting at the backseat, you see a lost phone",
+			"'Hmm guess they forgot it here'"
 		],
-		'item': 'key',
+		'item': 'phone',
 		'depends_on': 'intro_begin',
 		'repeat': false
 	},
 	'go': {
 		'dialogue': [
-			"'Well, they didn't live far, at least'",
+			"You decide to make the quick ride to return the phone",
 			"'Guess I'll pay them a quick visit"
 		],
 		'depends_on': 'intro_rearview',

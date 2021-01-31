@@ -9,7 +9,7 @@ var events_seen = {
 const events = {
 	'living_room_begin': {
 		'dialogue': [
-			"It's very dark, you can barely see anything"
+			"It's very dark in here, you can barely see anything"
 		],
 		'depends_on': null,
 		'repeat': false
@@ -23,8 +23,13 @@ const events = {
 	},
 	'living_room_desk': {
 		'dialogue': [
-			"You examine a desk",
+			"You examine the desk",
+			"You find a piece of paper with the following words:",
+			"Left 15, Right 2",
+			"It seems to be torn at the end",
+			"'A combination for a safe? I'll take it just in case"
 		],
+		'item': 'paper1',
 		'depends_on': 'living_room_begin',
 		'repeat': true
 	}

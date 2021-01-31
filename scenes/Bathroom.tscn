@@ -17,9 +17,9 @@ texture = ExtResource( 1 )
 
 [node name="Hallway" type="Button" parent="Objects"]
 margin_left = 5.0
-margin_top = 506.0
+margin_top = 512.0
 margin_right = 1091.0
-margin_bottom = 720.0
+margin_bottom = 675.0
 flat = true
 script = ExtResource( 2 )
 __meta__ = {

@@ -11,20 +11,22 @@ const itens = {
 	'key': {
 		'name': 'Key',
 		'thumbnail': 'res://icon.png', #TODO: CHANGE THIS
-		'correct': '???',
-		'use_message': ['???']
+		'correct': 'entrance_door',
+		'use_message': ['You manage to unlock the door and escape']
 	},
 	'paper1': {
 		'name': 'Piece of paper',
 		'thumbnail': 'res://icon.png', #TODO: CHANGE THIS
 		'correct': '???',
-		'use_message': ['???']
+		'use_message': ['???'],
+		'fake': true
 	},
 	'paper2': {
 		'name': 'Folded piece of paper',
 		'thumbnail': 'res://icon.png', #TODO: CHANGE THIS
 		'correct': '???',
-		'use_message': ['???']
+		'use_message': ['???'],
+		'fake': true
 	},
 	'phone': {
 		'name': 'Phone',
@@ -35,16 +37,25 @@ const itens = {
 	'bottle': {
 		'name': 'Bottle',
 		'thumbnail': 'res://icon.png',
-		'correct': 'sink',
+		'correct': 'bathroom_sink',
 		'use_message': [
-			'You throw the acidic solution in the messy sink',
-			"You can now reach something you couldn't before"
+			'You block the drain and carefully pours the solution in the messy sink',
+			'You can remove the rust from some object now'
+		]
+	},
+	'rusted_screwdriver': {
+		'name': 'Screwdriver (rusted)',
+		'thumbnail': 'res://icon.png',
+		'correct': 'bathroom_sink',
+		'use_message': [
+			"You carefully dip the screwdriver's tip in the acid",
+			"Seems you can use it now!"
 		]
 	},
 	'screwdriver': {
 		'name': 'Screwdriver',
 		'thumbnail': 'res://icon.png',
-		'correct': 'boarded_wall',
+		'correct': 'upstairs_boarded_wall',
 		'use_message': [
 			'You remove the screws, one by one',
 			'The board comes out easily'
@@ -84,11 +95,12 @@ func _on_Item_Selected(toggle: bool, index: int):
 
 func add_item(item_id: String):
 	var item = itens[item_id]
-	var index = len(inventory)
-	inventory.append(item)
-	$CanvasLayer/Itens.get_node("Slot"+str(index)).show()
-	$CanvasLayer/Itens.get_node("Slot"+str(index)).texture_normal = load(item['thumbnail'])
-	$CanvasLayer/Itens.get_node("Slot"+str(index)).hint_tooltip = item['name']
+	if not item.get('fake', false):
+		var index = len(inventory)
+		inventory.append(item)
+		$CanvasLayer/Itens.get_node("Slot"+str(index)).show()
+		$CanvasLayer/Itens.get_node("Slot"+str(index)).texture_normal = load(item['thumbnail'])
+		$CanvasLayer/Itens.get_node("Slot"+str(index)).hint_tooltip = item['name']
 
 
 func _on_Area2D_mouse_entered():

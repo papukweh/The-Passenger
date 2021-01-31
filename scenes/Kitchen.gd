@@ -9,7 +9,7 @@ var events_seen = {
 const events = {
 	'kitchen_begin': {
 		'dialogue': [
-			""
+			"The walls are a bit old, but you don't find anything unusual in here"
 		],
 		'depends_on': null,
 		'repeat': false
@@ -23,10 +23,15 @@ const events = {
 	},
 	'kitchen_cabinets': {
 		'dialogue': [
-			"Nothing interesting in here"
+			"You examine the cabinets",
+			"Inside, there is an old screwdriver",
+			"'Hey, this might come in handy'",
+			"'Too bad the tip is all rusted'",
+			"You might need to remove the rust somehow if you want to use it..."
 		],
 		'depends_on': 'kitchen_begin',
-		'repeat': true
+		'item': 'rusted_screwdriver',
+		'repeat': false
 	}
 }
 

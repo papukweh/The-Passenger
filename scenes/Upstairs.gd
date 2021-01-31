@@ -11,16 +11,16 @@ var events_seen = {
 const events = {
 	'upstairs_begin': {
 		'dialogue': [
-			"Upstairs, you look around and see",
+			"You climb the stairs, and at the top you look around and see",
 			"An office to the front",
-			"A dark hallway to the right"
+			"And a dark hallway to the right"
 		],
 		'depends_on': null,
 		'repeat': false
 	},
 	'go_inside': {
 		'dialogue': [
-			"You decide to return to the entrance"
+			""
 		],
 		'depends_on': 'upstairs_begin',
 		'repeat': false
@@ -42,11 +42,21 @@ const events = {
 	'upstairs_boarded_wall': {
 		'dialogue': [
 			"You can see a piece of paper lying behind the boards",
-			"'Maybe if I could unscrew those somehow...'"
+			"'Maybe if I could unscrew these somehow...'"
 		],
 		'depends_on': 'upstairs_begin',
 		'repeat': true
 	}
+#	'upstairs_wall': {
+#		'dialogue': [
+#			"You reach for the piece of paper",
+#			"It reads: 1, Left 9",
+#			"The beginning seems to be torn"
+#		],
+#		'depends_on': 'upstairs_boarded_wall',
+#		'item': 'paper2',
+#		'repeat': false
+#	}
 }
 
 onready var root = get_parent().get_parent().get_parent().get_parent()

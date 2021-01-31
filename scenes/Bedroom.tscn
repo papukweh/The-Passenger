@@ -17,9 +17,9 @@ texture = ExtResource( 1 )
 
 [node name="Hallway" type="Button" parent="Objects"]
 margin_left = 5.0
-margin_top = 506.0
+margin_top = 426.0
 margin_right = 1091.0
-margin_bottom = 720.0
+margin_bottom = 643.0
 flat = true
 script = ExtResource( 2 )
 __meta__ = {
@@ -37,6 +37,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Painting" type="Button" parent="Objects"]
+margin_left = 240.0
+margin_top = 116.0
+margin_right = 326.0
+margin_bottom = 230.0
+flat = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Tooltip" type="Label" parent="."]
 margin_right = 435.0
 margin_bottom = 58.0
@@ -46,3 +57,4 @@ __meta__ = {
 }
 [connection signal="pressed" from="Objects/Hallway" to="." method="_on_Hallway_pressed"]
 [connection signal="pressed" from="Objects/Cabinet" to="." method="_on_Cabinet_pressed"]
+[connection signal="pressed" from="Objects/Painting" to="." method="_on_Painting_pressed"]

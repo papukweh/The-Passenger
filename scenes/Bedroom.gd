@@ -4,12 +4,14 @@ var current_event = 'begin'
 var events_seen = {
 	'bedroom_begin': false,
 	'go_hallway': false,
-	'cabinet': false,
+	'bedroom_cabinet': false,
+	'bedroom_painting': false
 }
 const events = {
 	'bedroom_begin': {
 		'dialogue': [
-			"The bedroom is filled with religious imagery"
+			"The bedroom is filled with religious imagery",
+			"You feel a chill across your spine"
 		],
 		'depends_on': null,
 		'repeat': false
@@ -23,11 +25,31 @@ const events = {
 	},
 	'bedroom_cabinet': {
 		'dialogue': [
-			"You examine the cabinet...",
+			"You examine the cabinet",
+			"But find nothing of note"
 		],
 		'depends_on': 'bedroom_begin',
 		'repeat': true
+	},
+	'bedroom_painting': {
+		'dialogue': [
+			"You examine the picture",
+			"It comes off in your hands!",
+			"Behind it, there's gray safe",
+			"'How cliche...'"
+		],
+		'depends_on': 'bedroom_begin',
+		'repeat': false
 	}
+#	'safe': {
+#		'dialogue': [
+#			"You looked everywhere but couldn't find the key",
+#			"'Maybe in here...?'"
+#		],
+#		'item': 'safe',
+#		'depends_on': 'combination',
+#		'repeat': false
+#	},
 }
 
 onready var root = get_parent().get_parent().get_parent().get_parent()
@@ -55,3 +77,7 @@ func _on_Hallway_pressed():
 
 func _on_Cabinet_pressed():
 	root._Event_Triggered('bedroom_cabinet')
+
+
+func _on_Painting_pressed():
+	root._Event_Triggered('bedroom_painting')

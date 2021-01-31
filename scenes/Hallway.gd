@@ -11,7 +11,7 @@ var events_seen = {
 const events = {
 	'hallway_begin': {
 		'dialogue': [
-			""
+			"The hallway is very much uninviting"
 		],
 		'depends_on': null,
 		'repeat': false

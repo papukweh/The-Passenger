@@ -9,14 +9,16 @@ var events_seen = {
 const events = {
 	'bathroom_begin': {
 		'dialogue': [
-			""
+			"You are greeted by a chilling scene in the bathroom",
+			"'What the fuck.. How did this even...'",
+			"You need to leave this house as soon as possible"
 		],
 		'depends_on': null,
 		'repeat': false
 	},
 	'bathroom_sink': {
 		'dialogue': [
-			"The sink is filled with blood"
+			"The sink is covered with blood"
 		],
 		'depends_on': 'bathroom_begin',
 		'repeat': true
