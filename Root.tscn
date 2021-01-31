@@ -20,7 +20,7 @@ flags_unshaded = true
 flags_albedo_tex_force_srgb = true
 albedo_texture = SubResource( 1 )
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=3]
 resource_name = "acquire_bottle"
 length = 0.5
 tracks/0/type = "value"
@@ -48,7 +48,7 @@ tracks/1/keys = {
 "values": [ Vector3( 1, 1, 1 ), Vector3( 3, 3, 3 ) ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Objects/key:translation")
@@ -75,7 +75,7 @@ tracks/1/keys = {
 "values": [ Vector3( 0.01, 0.01, 0.01 ), Vector3( 0.03, 0.03, 0.03 ) ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=5]
 resource_name = "acquire_paper1"
 length = 0.5
 tracks/0/type = "value"
@@ -103,7 +103,7 @@ tracks/1/keys = {
 "values": [ Vector3( 0.35, 0.5, 0.5 ), Vector3( 1.05, 1.5, 1 ) ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=6]
 resource_name = "acquire_paper2"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Objects/paper2:translation")
@@ -130,8 +130,7 @@ tracks/1/keys = {
 "values": [ Vector3( 0.1, 0.15, 0.15 ), Vector3( 0.3, 0.25, 0.25 ) ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "acquire_phone"
+[sub_resource type="Animation" id=7]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Objects/phone:translation")
@@ -158,7 +157,7 @@ tracks/1/keys = {
 "values": [ Vector3( 0.1, 0.1, 0.1 ), Vector3( 0.2, 0.2, 0.2 ) ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=8]
 resource_name = "acquire_screwdriver"
 length = 0.5
 tracks/0/type = "value"
@@ -186,7 +185,7 @@ tracks/1/keys = {
 "values": [ Vector3( 2, 2, 2 ), Vector3( 3, 3, 3 ) ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=9]
 resource_name = "examine_safe"
 length = 0.5
 tracks/0/type = "value"
@@ -202,8 +201,7 @@ tracks/0/keys = {
 "values": [ Vector3( 6.12874e-07, -0.172776, -0.940448 ), Vector3( 0, -0.173, 0.6 ) ]
 }
 
-[sub_resource type="Animation" id=9]
-resource_name = "spin_bottle"
+[sub_resource type="Animation" id=10]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Objects/bottle:rotation_degrees")
@@ -218,7 +216,7 @@ tracks/0/keys = {
 "values": [ Vector3( 0, 0, 0 ), Vector3( 0, 180, 0 ), Vector3( 0, 360, 0 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=11]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Objects/key:rotation_degrees")
@@ -233,7 +231,7 @@ tracks/0/keys = {
 "values": [ Vector3( 0, 0, 0 ), Vector3( 0, 180, 0 ), Vector3( 0, 360, 0 ) ]
 }
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=12]
 resource_name = "spin_paper1"
 length = 2.0
 tracks/0/type = "value"
@@ -249,7 +247,7 @@ tracks/0/keys = {
 "values": [ Vector3( 87.619, 0, 0 ), Vector3( 87.619, 360, 0 ) ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=13]
 resource_name = "spin_paper2"
 length = 2.0
 tracks/0/type = "value"
@@ -265,8 +263,7 @@ tracks/0/keys = {
 "values": [ Vector3( -180, 0, 0 ), Vector3( -180, 180, 0 ), Vector3( -180, 360, 0 ) ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "spin_phone"
+[sub_resource type="Animation" id=14]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Objects/phone:rotation_degrees")
@@ -281,8 +278,7 @@ tracks/0/keys = {
 "values": [ Vector3( 0, 90, 0 ), Vector3( 0, 270, 0 ), Vector3( 0, 450, 0 ) ]
 }
 
-[sub_resource type="Animation" id=11]
-resource_name = "spin_screwdriver"
+[sub_resource type="Animation" id=15]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Objects/screwdriver:rotation_degrees")
@@ -297,8 +293,7 @@ tracks/0/keys = {
 "values": [ Vector3( 0, 0, 0 ), Vector3( 0, 180, 0 ), Vector3( 0, 360, 0 ) ]
 }
 
-[sub_resource type="Animation" id=7]
-resource_name = "test"
+[sub_resource type="Animation" id=16]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -322,7 +317,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.19864 )
 projection = 1
 current = true
 fov = 73.727
-size = 1.95
+size = 1.99
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.623013, -0.733525, 0.271653, 0.321394, 0.55667, 0.766045, -0.713134, -0.389948, 0.582563, 0, 10, 2.03516 )
@@ -359,20 +354,20 @@ transform = Transform( -1.62921e-08, 0, 0.1, 0, 0.1, 0, -0.1, 0, -1.62921e-08, 0
 material/0 = SubResource( 2 )
 
 [node name="Animation3D" type="AnimationPlayer" parent="."]
-anims/acquire_bottle = SubResource( 8 )
-anims/acquire_key = SubResource( 3 )
-anims/acquire_paper1 = SubResource( 13 )
-anims/acquire_paper2 = SubResource( 14 )
-anims/acquire_phone = SubResource( 4 )
-anims/acquire_screwdriver = SubResource( 10 )
-anims/examine_safe = SubResource( 12 )
-anims/spin_bottle = SubResource( 9 )
-anims/spin_key = SubResource( 5 )
-anims/spin_paper1 = SubResource( 16 )
-anims/spin_paper2 = SubResource( 15 )
-anims/spin_phone = SubResource( 6 )
-anims/spin_screwdriver = SubResource( 11 )
-anims/test = SubResource( 7 )
+anims/acquire_bottle = SubResource( 3 )
+anims/acquire_key = SubResource( 4 )
+anims/acquire_paper1 = SubResource( 5 )
+anims/acquire_paper2 = SubResource( 6 )
+anims/acquire_phone = SubResource( 7 )
+anims/acquire_screwdriver = SubResource( 8 )
+anims/examine_safe = SubResource( 9 )
+anims/spin_bottle = SubResource( 10 )
+anims/spin_key = SubResource( 11 )
+anims/spin_paper1 = SubResource( 12 )
+anims/spin_paper2 = SubResource( 13 )
+anims/spin_phone = SubResource( 14 )
+anims/spin_screwdriver = SubResource( 15 )
+anims/test = SubResource( 16 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.5

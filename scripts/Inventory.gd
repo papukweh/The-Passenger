@@ -52,8 +52,6 @@ const itens = {
 	}
 }
 
-const wrong_message = ["I don't think this will help me here..."]
-
 func _ready():
 	$CanvasLayer/Outline.connect("mouse_entered", self, "mouse_on_button", [true])
 	$CanvasLayer/Outline.connect("mouse_exited", self, "mouse_on_button", [false])
@@ -90,6 +88,7 @@ func add_item(item_id: String):
 	inventory.append(item)
 	$CanvasLayer/Itens.get_node("Slot"+str(index)).show()
 	$CanvasLayer/Itens.get_node("Slot"+str(index)).texture_normal = load(item['thumbnail'])
+	$CanvasLayer/Itens.get_node("Slot"+str(index)).hint_tooltip = item['name']
 
 
 func _on_Area2D_mouse_entered():

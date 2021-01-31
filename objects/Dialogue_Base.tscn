@@ -15,7 +15,7 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -540.0
-margin_top = -142.0
+margin_top = -119.0
 margin_right = 540.0
 color = Color( 1, 1, 1, 0.631373 )
 __meta__ = {
@@ -28,7 +28,7 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -535.0
-margin_top = -136.0
+margin_top = -110.0
 margin_right = 533.0
 margin_bottom = -6.0
 color = Color( 0, 0, 0, 0.768627 )
@@ -37,10 +37,10 @@ __meta__ = {
 }
 
 [node name="Text" type="Label" parent="CanvasLayer"]
-margin_left = 21.0
-margin_top = 595.0
-margin_right = 1056.0
-margin_bottom = 702.0
+margin_left = 18.6673
+margin_top = 618.327
+margin_right = 1053.67
+margin_bottom = 725.327
 custom_fonts/font = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false

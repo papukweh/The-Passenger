@@ -29,6 +29,11 @@ window/size/width=1080
 window/size/height=720
 window/size/resizable=false
 
+[gui]
+
+theme/custom_font="res://assets/fonts/Dialogue_Font.tres"
+timers/tooltip_delay_sec=0.01
+
 [input]
 
 ui_accept={

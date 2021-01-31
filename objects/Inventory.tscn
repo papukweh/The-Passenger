@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scripts/Inventory.gd" type="Script" id=1]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "show_inventory"
 length = 0.4
 tracks/0/type = "value"
@@ -111,18 +111,18 @@ rect_min_size = Vector2( 100, 0 )
 toggle_mode = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/show_inventory = SubResource( 2 )
+anims/show_inventory = SubResource( 1 )
 
 [node name="Outside" type="ReferenceRect" parent="."]
-margin_left = 264.0
-margin_right = 831.0
+margin_left = 260.0
+margin_right = 840.0
 margin_bottom = 121.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Lower" type="ReferenceRect" parent="."]
-margin_top = 123.0
+margin_top = 128.0
 margin_right = 1082.0
 margin_bottom = 720.0
 __meta__ = {

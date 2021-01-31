@@ -1,35 +1,56 @@
 extends Spatial
 
+const wrong_message = ["I don't think this will help me here..."]
+
 var dialogue = null
 var inventory = null
-var events = null
-var events_seen = null
+var events = {
+	'wrong_item': {
+		'dialogue': wrong_message,
+		'depends_on': null,
+		'repeat': true
+	}
+}
+var events_seen = {
+	'wrong_item': false
+}
+var visited = []
 
+var scenes = {
+	'intro': load('res://scenes/Intro.tscn'),
+	'street': load('res://scenes/Street.tscn'),
+	'outside': load('res://scenes/Outside_House.tscn'),
+	'entrance': load('res://scenes/Entrance.tscn'),
+	'kitchen': load('res://scenes/Kitchen.tscn'),
+	'living_room': load('res://scenes/Living_Room.tscn'),
+	'upstairs': load('res://scenes/Upstairs.tscn'),
+	'office': load('res://scenes/Office.tscn'),
+	'hallway': load('res://scenes/Hallway.tscn'),
+	'bedroom': load('res://scenes/Bedroom.tscn'),
+	'bathroom': load('res://scenes/Bathroom.tscn'),
+}
 
 func _ready():
 	dialogue = $GUIPanel3D/Viewport/Dialogue
 	inventory = $GUIPanel3D/Viewport/Inventory
 	dialogue.connect("event_finished", self, "_on_Event_Finished")
-	load_scene("res://scenes/Intro.tscn")
+	load_scene("intro")
 	#$Animation3D.play("test")
 	$Objects/safe_with_key/AnimationPlayer.play("open_door")
 
 
-func load_scene(scenepath: String):
-	var scene = load(scenepath)
+func load_scene(scene_id: String):
+	var scene = scenes[scene_id]
 	$GUIPanel3D.change_scene(scene)
 	yield($GUIPanel3D, "scene_loaded")
 	yield(get_tree(), "idle_frame")
 	var current_scene = $GUIPanel3D.node_base2d.get_child(0)
-	events = current_scene.events
-	events['wrong_item'] = {
-		'dialogue': inventory.wrong_message,
-		'depends_on': null,
-		'repeat': true
-	}
-	events_seen = current_scene.events_seen
-	events_seen['wrong_item'] = false
-	_Event_Triggered('begin')
+	if not visited.has(scene_id):
+		for k in current_scene.events.keys():
+			events[k] = current_scene.events[k]
+			events_seen[k] = current_scene.events_seen[k]
+	visited.append(scene_id)
+	_Event_Triggered(scene_id+'_begin')
 
 
 func _Event_Triggered(event: String):
@@ -59,24 +80,26 @@ func _on_Event_Finished(event: String):
 		$Animation3D.playback_speed = 2.1
 		$Animation3D.play("acquire_"+item)
 		inventory.add_item(item)
+	elif event == 'go_house':
+		load_scene('outside')
 	elif event == 'go':
-		load_scene('res://scenes/Outside_House.tscn')
+		load_scene('street')
 	elif event == 'go_inside':
-		load_scene('res://scenes/Entrance.tscn')
+		load_scene('entrance')
 	elif event == 'go_upstairs':
-		load_scene('res://scenes/Upstairs.tscn')
+		load_scene('upstairs')
 	elif event == 'go_living_room':
-		load_scene('res://scenes/Living_Room.tscn')
+		load_scene('living_room')
 	elif event == 'go_kitchen':
-		load_scene('res://scenes/Kitchen.tscn')
+		load_scene('kitchen')
 	elif event == 'go_office':
-		load_scene('res://scenes/Office.tscn')
+		load_scene('office')
 	elif event == 'go_hallway':
-		load_scene('res://scenes/Hallway.tscn')
+		load_scene('hallway')
 	elif event == 'go_bedroom':
-		load_scene('res://scenes/Bedroom.tscn')
+		load_scene('bedroom')
 	elif event == 'go_bathroom':
-		load_scene('res://scenes/Bathroom.tscn')
+		load_scene('bathroom')
 
 
 func _on_AnimationPlayer_animation_finished(anim_name: String):

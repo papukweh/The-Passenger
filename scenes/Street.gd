@@ -1,32 +1,23 @@
 extends Node2D
-var current_event = 'begin'
 
 var events_seen = {
-	'living_room_begin': false,
-	'go_inside': false,
-	'living_room_desk': false,
+	'street_begin': false,
+	'go_house': false
 }
 const events = {
-	'living_room_begin': {
+	'street_begin': {
 		'dialogue': [
-			"It's very dark, you can barely see anything"
+			"You go back to the street where the final passenger lives",
+			"'This was the place I dropped them off'",
+			"'Now, to find the correct house'"
 		],
-		'depends_on': null,
-		'repeat': false
+		'depends_on': null
 	},
-	'go_inside': {
+	'go_house': {
 		'dialogue': [
-			""
+			"'This is the house, I'm certain of it'"
 		],
-		'depends_on': 'living_room_begin',
-		'repeat': false
-	},
-	'living_room_desk': {
-		'dialogue': [
-			"You examine a desk",
-		],
-		'depends_on': 'living_room_begin',
-		'repeat': true
+		'depends_on': 'street_begin'
 	}
 }
 
@@ -49,9 +40,8 @@ func _input(event: InputEvent):
 		Input.set_custom_mouse_cursor(normal)
 		$Tooltip.set_text("")
 
-func _on_Entrance_pressed():
-	root._Event_Triggered('go_inside')
 
 
-func _on_Desk_pressed():
-	root._Event_Triggered('living_room_desk')
+
+func _on_House_pressed():
+	root._Event_Triggered('go_house')
