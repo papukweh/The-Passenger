@@ -199,7 +199,7 @@ tracks/1/keys = {
 "values": [ Vector3( 2, 2, 2 ), Vector3( 3, 3, 3 ) ]
 }
 
-[sub_resource type="Animation" id=17]
+[sub_resource type="Animation" id=9]
 resource_name = "acquire_screwdriver"
 length = 0.5
 tracks/0/type = "value"
@@ -227,8 +227,7 @@ tracks/1/keys = {
 "values": [ Vector3( 2, 2, 2 ), Vector3( 3, 3, 3 ) ]
 }
 
-[sub_resource type="Animation" id=9]
-resource_name = "examine_safe"
+[sub_resource type="Animation" id=10]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Objects/safe_with_key:translation")
@@ -257,7 +256,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=11]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Objects/bottle:rotation_degrees")
@@ -272,7 +271,7 @@ tracks/0/keys = {
 "values": [ Vector3( 0, 0, 0 ), Vector3( 0, 180, 0 ), Vector3( 0, 360, 0 ) ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=12]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Objects/key:rotation_degrees")
@@ -301,8 +300,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=12]
-resource_name = "spin_paper1"
+[sub_resource type="Animation" id=13]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Objects/paper1:rotation_degrees")
@@ -317,8 +315,7 @@ tracks/0/keys = {
 "values": [ Vector3( 87.619, 0, 0 ), Vector3( 87.619, 360, 0 ) ]
 }
 
-[sub_resource type="Animation" id=13]
-resource_name = "spin_paper2"
+[sub_resource type="Animation" id=14]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Objects/paper2:rotation_degrees")
@@ -333,7 +330,7 @@ tracks/0/keys = {
 "values": [ Vector3( -180, 0, 0 ), Vector3( -180, 180, 0 ), Vector3( -180, 360, 0 ) ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=15]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Objects/phone:rotation_degrees")
@@ -348,7 +345,7 @@ tracks/0/keys = {
 "values": [ Vector3( 0, 90, 0 ), Vector3( 0, 270, 0 ), Vector3( 0, 450, 0 ) ]
 }
 
-[sub_resource type="Animation" id=18]
+[sub_resource type="Animation" id=16]
 resource_name = "spin_rusted_screwdriver"
 length = 2.0
 tracks/0/type = "value"
@@ -364,7 +361,7 @@ tracks/0/keys = {
 "values": [ Vector3( 0, 0, 0 ), Vector3( 0, 180, 0 ), Vector3( 0, 360, 0 ) ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=17]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Objects/screwdriver:rotation_degrees")
@@ -379,7 +376,7 @@ tracks/0/keys = {
 "values": [ Vector3( 0, 0, 0 ), Vector3( 0, 180, 0 ), Vector3( 0, 360, 0 ) ]
 }
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=18]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -446,16 +443,16 @@ anims/acquire_paper1 = SubResource( 5 )
 anims/acquire_paper2 = SubResource( 6 )
 anims/acquire_phone = SubResource( 7 )
 anims/acquire_rusted_screwdriver = SubResource( 8 )
-anims/acquire_screwdriver = SubResource( 17 )
-anims/examine_safe = SubResource( 9 )
-anims/spin_bottle = SubResource( 10 )
-anims/spin_key = SubResource( 11 )
-anims/spin_paper1 = SubResource( 12 )
-anims/spin_paper2 = SubResource( 13 )
-anims/spin_phone = SubResource( 14 )
-anims/spin_rusted_screwdriver = SubResource( 18 )
-anims/spin_screwdriver = SubResource( 15 )
-anims/test = SubResource( 16 )
+anims/acquire_screwdriver = SubResource( 9 )
+anims/examine_safe = SubResource( 10 )
+anims/spin_bottle = SubResource( 11 )
+anims/spin_key = SubResource( 12 )
+anims/spin_paper1 = SubResource( 13 )
+anims/spin_paper2 = SubResource( 14 )
+anims/spin_phone = SubResource( 15 )
+anims/spin_rusted_screwdriver = SubResource( 16 )
+anims/spin_screwdriver = SubResource( 17 )
+anims/test = SubResource( 18 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.5

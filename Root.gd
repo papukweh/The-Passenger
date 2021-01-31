@@ -105,6 +105,7 @@ var scenes = {
 }
 
 func _ready():
+	#OS.set_window_size(Vector2(1080, 720))
 	set_process(false)
 	dialogue = $GUIPanel3D/Viewport/Dialogue
 	inventory = $GUIPanel3D/Viewport/Inventory
