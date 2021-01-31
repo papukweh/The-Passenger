@@ -74,7 +74,9 @@ func _ready():
 	dialogue = $GUIPanel3D/Viewport/Dialogue
 	inventory = $GUIPanel3D/Viewport/Inventory
 	dialogue.connect("event_finished", self, "_on_Event_Finished")
-	load_scene("kitchen")
+	$SFX.stream = load("res://assets/sfx/door shutting car engine start.wav")
+	$SFX.play()
+	load_scene("intro")
 	#$Animation3D.play("test")
 	#$Objects/safe_with_key/AnimationPlayer.play("open_door")
 
@@ -93,6 +95,9 @@ func load_scene(scene_id: String):
 	visited.append(scene_id)
 	scene_loaded = true
 	_Event_Triggered(scene_id+'_begin')
+	if scene_id == "intro":
+		$SFX.stream = load("res://assets/sfx/car engine running.wav")
+		$SFX.play()
 
 var used_in_sink = false
 var has_paper1 = false
@@ -108,9 +113,13 @@ func _Event_Triggered(event: String):
 				dialogue.init(event, item['use_message'])
 			elif item['name'] == 'Screwdriver (rusted)' and used_in_sink:
 				dialogue.init('screwdriver', item['use_message'])
+				$SFX.stream = load("res://assets/sfx/acid burn.wav")
+				$SFX.play()
 			elif item['name'] == 'Screwdriver':
 				has_paper2 = true
 				dialogue.init('paper2', item['use_message'])
+				$SFX.stream = load("res://assets/sfx/painting slide.wav")
+				$SFX.play()
 			else:
 				dialogue.init(event, item['use_message'])
 			inventory.remove_item()
@@ -126,6 +135,8 @@ func _Event_Triggered(event: String):
 			return
 		elif can_play and event == "safe":
 			$Objects/safe_with_key/AnimationPlayer.play("open_door")
+			$SFX.stream = load("res://assets/sfx/safe opening.wav")
+			$SFX.play()
 		if event.begins_with("go") and not can_play:
 			can_play = true
 			events[event]['dialogue'] = [""]
@@ -151,6 +162,9 @@ func _on_Event_Finished(event: String):
 				'<Select the item in your inventory and interact to use it>'
 			])
 			first_item = false
+	if event.begins_with("go") and event != "go":
+		$SFX.stream = load("res://assets/sfx/footsteps wood player.wav")
+		$SFX.play()
 	if has_paper1 and has_paper2:
 		_Event_Triggered('go_safe')
 		has_paper1 = false
@@ -164,8 +178,12 @@ func _on_Event_Finished(event: String):
 		load_scene('street')
 	elif event == 'go_inside':
 		load_scene('entrance')
+		$BGM.stream = load("res://assets/bgm/horror ambient song.wav")
+		$BGM.play()
 	elif event == 'go_upstairs':
 		load_scene('upstairs')
+		$SFX.stream = load("res://assets/sfx/squeaky floor player.wav")
+		$SFX.play()
 	elif event == 'go_living_room':
 		load_scene('living_room')
 	elif event == 'go_kitchen':
@@ -174,10 +192,14 @@ func _on_Event_Finished(event: String):
 		load_scene('office')
 	elif event == 'go_hallway':
 		load_scene('hallway')
+		$BGM.stream = load("res://assets/bgm/horror ambient song.wav")
+		$BGM.play()
 	elif event == 'go_bedroom':
 		load_scene('bedroom')
 	elif event == 'go_bathroom':
 		load_scene('bathroom')
+		$BGM.stream = load("res://assets/bgm/horror bathroom discovery song.wav")
+		$BGM.play()
 
 func open_safe():
 	$Objects/safe_with_key/AnimationPlayer.play("open_door")

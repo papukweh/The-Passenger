@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/horror ending song.wav-a4a0bfbbf988511108447b527fbb56e0.sample"
+
+[deps]
+
+source_file="res://assets/bgm/horror ending song.wav"
+dest_files=[ "res://.import/horror ending song.wav-a4a0bfbbf988511108447b527fbb56e0.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

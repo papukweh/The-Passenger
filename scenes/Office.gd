@@ -12,6 +12,7 @@ const events = {
 		'dialogue': [
 			"You enter a small office with a lone desk",
 			"You can feel a cold breeze coming in through the window",
+			"You try to open it but it's jammed shut",
 			"'Damn wind...'"
 		],
 		'depends_on': null,

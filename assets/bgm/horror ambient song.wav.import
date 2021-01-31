@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/horror ambient song.wav-ae0f685067bd0544449cca195de074fa.sample"
+
+[deps]
+
+source_file="res://assets/bgm/horror ambient song.wav"
+dest_files=[ "res://.import/horror ambient song.wav-ae0f685067bd0544449cca195de074fa.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0
