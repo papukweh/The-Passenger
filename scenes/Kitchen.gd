@@ -30,7 +30,7 @@ const events = {
 			"You might need to remove the rust somehow if you want to use it..."
 		],
 		'depends_on': 'kitchen_begin',
-		'item': 'screwdriver',
+		'item': 'rusted_screwdriver',
 		'repeat': false
 	}
 }

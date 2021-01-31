@@ -74,6 +74,20 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Vector3( 0.01, 0.01, 0.01 ), Vector3( 0.03, 0.03, 0.03 ) ]
 }
+tracks/2/type = "method"
+tracks/2/path = NodePath("Objects/safe_with_key")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "hide"
+} ]
+}
 
 [sub_resource type="Animation" id=5]
 resource_name = "acquire_paper1"
@@ -215,7 +229,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=9]
 resource_name = "examine_safe"
-length = 0.5
+length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Objects/safe_with_key:translation")
 tracks/0/interp = 1
@@ -227,6 +241,20 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector3( 6.12874e-07, -0.172776, -0.940448 ), Vector3( 0, -0.173, 0.6 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("Objects/safe_with_key")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "open_safe"
+} ]
 }
 
 [sub_resource type="Animation" id=10]
@@ -257,6 +285,20 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector3( 0, 0, 0 ), Vector3( 0, 180, 0 ), Vector3( 0, 360, 0 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("Objects/key")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "hide"
+} ]
 }
 
 [sub_resource type="Animation" id=12]
@@ -375,7 +417,7 @@ directional_shadow_normal_bias = 0.2
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.458723, -0.000989758, -0.42946 )
 
 [node name="key" parent="Objects" instance=ExtResource( 3 )]
-transform = Transform( 0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, -0.149261, -0.259848, -1.26978 )
+transform = Transform( 0.01, 0, 1.74846e-09, 0, 0.01, 0, -1.74846e-09, 0, 0.01, -0.149261, -0.259848, -1.26978 )
 
 [node name="screwdriver" parent="Objects" instance=ExtResource( 7 )]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0.456471, -0.143652, -0.701953 )
@@ -422,5 +464,6 @@ wait_time = 1.5
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 [connection signal="animation_finished" from="Animation3D" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="finished" from="SFX" to="." method="_on_SFX_finished"]
 
 [editable path="GUIPanel3D"]

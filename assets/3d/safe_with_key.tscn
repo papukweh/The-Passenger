@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/3d/safe_with_key.dae" type="PackedScene" id=1]
 [ext_resource path="res://assets/3d/02 - Default.material" type="Material" id=2]
+[ext_resource path="res://assets/3d/safe_with_key.gd" type="Script" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "open_door"
@@ -21,9 +22,10 @@ tracks/0/keys = {
 
 [node name="safe_with_key" instance=ExtResource( 1 )]
 transform = Transform( 1.4, 0, 0, 0, 1.3523, -0.362347, 0, 0.362347, 1.3523, 0, 0, 0 )
+script = ExtResource( 3 )
 
 [node name="Door" parent="." index="1"]
-transform = Transform( 0.012709, 0, 0, 0, 0.0122535, -2.32831e-10, 0, 0, 0.012709, 0.145072, 0.330472, 0.189411 )
+transform = Transform( 0.012709, 0, 0, 0, 0.0122535, 0, 0, 0, 0.012709, 0.145072, 0.330472, 0.189411 )
 
 [node name="Safebox_body" parent="." index="2"]
 material/0 = ExtResource( 2 )

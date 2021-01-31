@@ -45,11 +45,33 @@ var events = {
 		'depends_on': 'go_safe',
 		'repeat': false
 	},
-	'escape': {
-		'dialogue': [
-			"You use the key and finally escape this hellish place"
+	'chase': {
+		"dialogue": [
+			'Inside you find only a key',
+			"'Maybe this can open the entrance?'",
+			"'Better get the fuck away from here'",
+			"Strangely you hear a door opening",
+			"You feel your heart beating faster",
+			"Then you hear heavy footsteps coming out of the last corridor room",
+			"You feel the urge to run"
 		],
 		'depends_on': 'safe',
+		'repeat': false
+	},
+	'escape': {
+		'dialogue': [
+			"You see the entrance",
+			"'Fuck, I’m so close'",
+			"You grab the safe key and finally open the door"
+		],
+		'depends_on': 'chase',
+		'repeat': false
+	},
+	'death': {
+		'dialogue': [
+			""
+		],
+		'depends_on': 'chase',
 		'repeat': false
 	}
 }
@@ -59,7 +81,11 @@ var events_seen = {
 	'go_safe': false,
 	'can_open_safe': false,
 	'bedroom_painting': false,
-	'safe': false
+	'safe': false,
+	'chase': false,
+	'escape': false,
+	'death': false,
+	'credits_begin': false
 }
 var visited = []
 
@@ -79,6 +105,7 @@ var scenes = {
 }
 
 func _ready():
+	set_process(false)
 	dialogue = $GUIPanel3D/Viewport/Dialogue
 	inventory = $GUIPanel3D/Viewport/Inventory
 	dialogue.connect("event_finished", self, "_on_Event_Finished")
@@ -94,6 +121,7 @@ func load_scene(scene_id: String):
 	yield($GUIPanel3D, "scene_loaded")
 	yield(get_tree(), "idle_frame")
 	var current_scene = $GUIPanel3D.node_base2d.get_child(0)
+	time_left = 30.0
 	if not visited.has(scene_id):
 		for k in current_scene.events.keys():
 			events[k] = current_scene.events[k]
@@ -111,6 +139,11 @@ var has_paper2 = false
 func _Event_Triggered(event: String):
 	if not scene_loaded:
 		return
+	if event == "entrance_begin" and in_chase:
+		set_process(false)
+		$SFX.stream = load("res://assets/door opening entrance.wav")
+		$SFX.play()
+		_Event_Triggered("escape")
 	if inventory.selected_item:
 		var item = inventory.selected_item
 		if item['correct'] == event:
@@ -137,10 +170,13 @@ func _Event_Triggered(event: String):
 		var repeat = events[event].get('repeat') or not events_seen[event]
 		var can_play = (not depends_on or events_seen[depends_on]) and repeat
 		if event == 'bedroom_painting' and events_seen['can_open_safe']:
+			if not events_seen['bedroom_painting']:
+				events_seen['bedroom_painting'] = true
+				_Event_Triggered("bedroom_painting")
+				return
 			_Event_Triggered("safe")
 			return
 		elif can_play and event == "safe":
-			$Objects/safe_with_key/AnimationPlayer.play("open_door")
 			$SFX.stream = load("res://assets/sfx/safe opening.wav")
 			$SFX.play()
 		if event.begins_with("go") and not can_play:
@@ -152,10 +188,13 @@ func _Event_Triggered(event: String):
 				dialogue.init(event, events[event]['dialogue'])
 				dialogue.start()
 
-
 func _on_Event_Finished(event: String):
 	print("finished event: {e}".format({'e': event}))
 	events_seen[event] = true
+	if event == "death":
+		$Timer.start()
+		yield($Timer, "timeout")
+		$GUIPanel3D/Viewport/Jumpscare.hide()
 	if events[event].get('item'):
 		var item = events[event]['item']
 		if item == 'paper1':
@@ -171,25 +210,30 @@ func _on_Event_Finished(event: String):
 	if event.begins_with("go") and event != "go":
 		$SFX.stream = load("res://assets/sfx/footsteps wood player.wav")
 		$SFX.play()
+	if event == "bedroom_painting" and events_seen['can_open_safe']:
+		_Event_Triggered("safe")
 	if has_paper1 and has_paper2:
 		_Event_Triggered('go_safe')
 		has_paper1 = false
 		has_paper2 = false
 		events_seen['can_open_safe'] = true
-	elif event == 'escape':
+	elif event == 'escape' or event == 'death':
 		load_scene('credits')
 		$BGM.stream = load("res:/assets/bgm/horror ending song.wav")
 		$BGM.play()
-	elif event == 'safe':
+	elif event == 'chase':
 		start_chase()
+	elif event == 'safe':
+		$Animation3D.play("examine_safe")
 	elif event == 'go_house':
 		load_scene('outside')
 	elif event == 'go':
 		load_scene('street')
 	elif event == 'go_inside':
 		load_scene('entrance')
-		$BGM.stream = load("res://assets/bgm/horror ambient song.wav")
-		$BGM.play()
+		if $BGM.stream != load("res://assets/bgm/horror chase song.wav"):
+			$BGM.stream = load("res://assets/bgm/horror ambient song.wav")
+			$BGM.play()
 	elif event == 'go_upstairs':
 		load_scene('upstairs')
 		$SFX.stream = load("res://assets/sfx/squeaky floor player.wav")
@@ -202,23 +246,48 @@ func _on_Event_Finished(event: String):
 		load_scene('office')
 	elif event == 'go_hallway':
 		load_scene('hallway')
-		$BGM.stream = load("res://assets/bgm/horror ambient song.wav")
-		$BGM.play()
+		if not in_chase:
+			$BGM.stream = load("res://assets/bgm/horror ambient song.wav")
+			$BGM.play()
 	elif event == 'go_bedroom':
 		load_scene('bedroom')
 	elif event == 'go_bathroom':
 		load_scene('bathroom')
-		$BGM.stream = load("res://assets/bgm/horror bathroom discovery song.wav")
-		$BGM.play()
+		if not in_chase:
+			$BGM.stream = load("res://assets/bgm/horror bathroom discovery song.wav")
+			$BGM.play()
 
-func open_safe():
-	$Objects/safe_with_key/AnimationPlayer.play("open_door")
+var time_left = 5.0
+var sound = ""
+var in_chase = false
+
+func _process(delta):
+	time_left -= delta
+	if time_left <= 0:
+		$SFX.stream = load("res://assets/sfx/intense jumpscare.wav")
+		$GUIPanel3D/Viewport/Jumpscare.show()
+		_Event_Triggered("death")
 
 func start_chase():
-	print("START CHASE AAA")
+	in_chase = true
+	sound = "door_open"
+	print("VOU TOCAR ABRIR OPRTA")
+	$SFX.stream = load("res://assets/door open corridor chase.wav")
+	$SFX.play()
+	$BGM.stream = load("res://assets/bgm/horror chase song.wav")
+	$BGM.play()
+	set_process(true)
+
 
 func _on_AnimationPlayer_animation_finished(anim_name: String):
-	if anim_name.begins_with("acquire") and $Animation3D.playback_speed > 2.0:
+	if anim_name == "examine_safe":
+		$Animation3D.play("acquire_key")
+	elif anim_name == "acquire_key":
+		$Animation3D.play("spin_key")
+		$Timer.start()
+		yield($Timer, "timeout")
+		_Event_Triggered("chase")
+	elif anim_name.begins_with("acquire") and $Animation3D.playback_speed > 2.0:
 		var obj = anim_name.substr(8)
 		print("PEGUEI OBJETO {obj}".format({'obj': obj}))
 		$Animation3D.play("spin_"+obj)
@@ -226,3 +295,6 @@ func _on_AnimationPlayer_animation_finished(anim_name: String):
 		yield($Timer, "timeout")
 		$Animation3D.playback_speed = 2.0
 		$Animation3D.play_backwards("acquire_"+obj)
+
+
+

@@ -41,7 +41,7 @@ const events = {
 			"'Maybe in here...?'"
 		],
 		'depends_on': 'bedroom_begin',
-		'repeat': false
+		'repeat': true
 	}
 }
 

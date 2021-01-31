@@ -11,9 +11,7 @@ var current_event = ""
 signal event_finished
 
 func _ready():
-	pass
-	#init(lines)
-	#start()
+	sfx = get_parent().get_parent().get_parent().get_node("SFX")
 
 
 func init(event_arg: String, lines_arg: Array):
@@ -26,8 +24,11 @@ func start():
 	next()
 
 
+var sfx = null
 func next():
 	var next = lines.pop_front()
+	if next == "Strangely you hear a door opening":
+		sfx.stream = load("res://assets/sfx/door open corridor chase.wav")
 	if next:
 		set_dialogue(next)
 	else:

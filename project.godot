@@ -17,6 +17,7 @@ _global_script_class_icons={
 
 config/name="The Passenger"
 run/main_scene="res://Root.tscn"
+boot_splash/image="res://Passenger.png"
 config/icon="res://icon.png"
 
 [autoload]
