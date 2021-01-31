@@ -2,7 +2,7 @@ extends Node2D
 
 var events_seen = {
 	'begin': false,
-	'door': false
+	'go_inside': false
 }
 const events = {
 	'begin': {
@@ -13,7 +13,7 @@ const events = {
 		],
 		'depends_on': null
 	},
-	'door': {
+	'go_inside': {
 		'dialogue': [
 			"Seems like the door is open",
 			"I guess I'll just leave the phone inside", 
@@ -27,4 +27,4 @@ const events = {
 onready var root = get_parent().get_parent().get_parent().get_parent()
 
 func _on_Door_pressed():
-	root._Event_Triggered('door')
+	root._Event_Triggered('go_inside')

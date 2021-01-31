@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/2d/entrance+stairs.jpg" type="Texture" id=1]
+[ext_resource path="res://scripts/Clickable.gd" type="Script" id=2]
+[ext_resource path="res://scenes/Entrance.gd" type="Script" id=3]
+
+[node name="Scene" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Objects" type="Node2D" parent="."]
+
+[node name="Upstairs" type="Button" parent="Objects"]
+margin_left = 236.0
+margin_top = 35.0
+margin_right = 574.0
+margin_bottom = 680.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Living_Room" type="Button" parent="Objects"]
+margin_left = 705.0
+margin_top = 244.0
+margin_right = 920.0
+margin_bottom = 571.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Kitchen" type="Button" parent="Objects"]
+margin_left = 5.0
+margin_top = 13.0
+margin_right = 90.0
+margin_bottom = 717.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Entrance_Background" type="Sprite" parent="."]
+position = Vector2( 566.886, 360.992 )
+scale = Vector2( 0.382532, 0.4 )
+texture = ExtResource( 1 )
+[connection signal="pressed" from="Objects/Upstairs" to="." method="_on_Upstairs_pressed"]
+[connection signal="pressed" from="Objects/Living_Room" to="." method="_on_Living_Room_pressed"]
+[connection signal="pressed" from="Objects/Kitchen" to="." method="_on_Kitchen_pressed"]

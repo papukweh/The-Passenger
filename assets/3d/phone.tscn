@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/3d/blk.material" type="Material" id=1]
+[ext_resource path="res://assets/3d/phone.dae" type="PackedScene" id=3]
+
+[node name="phone" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0, 0 )
+
+[node name="i phone x" parent="." index="0"]
+material/0 = ExtResource( 1 )
+material/1 = ExtResource( 1 )

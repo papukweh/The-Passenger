@@ -1,12 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://gui_3d.gd" type="Script" id=1]
-[ext_resource path="res://assets/2d/pexels-wendy-wei-1662570.jpg" type="Texture" id=2]
 [ext_resource path="res://Base2D.gd" type="Script" id=3]
 [ext_resource path="res://objects/Dialogue_Base.tscn" type="PackedScene" id=4]
 [ext_resource path="res://objects/Inventory.tscn" type="PackedScene" id=5]
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=1]
 resource_name = "fade_out"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Scene:modulate")
@@ -21,10 +20,10 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ) ]
 }
 
-[sub_resource type="QuadMesh" id=1]
+[sub_resource type="QuadMesh" id=2]
 size = Vector2( 3, 2 )
 
-[sub_resource type="SpatialMaterial" id=5]
+[sub_resource type="SpatialMaterial" id=3]
 
 [sub_resource type="BoxShape" id=4]
 extents = Vector3( 1.5, 1, 0.05 )
@@ -43,19 +42,18 @@ script = ExtResource( 3 )
 [node name="Scene" type="Node2D" parent="Viewport"]
 modulate = Color( 0, 0, 0, 1 )
 
-[node name="pexels-wendy-wei-1662570" type="Sprite" parent="Viewport/Scene"]
-texture = ExtResource( 2 )
+[node name="Node2D" type="Node2D" parent="Viewport/Scene"]
 
 [node name="Animation2D" type="AnimationPlayer" parent="Viewport"]
-anims/fade_out = SubResource( 6 )
+anims/fade_out = SubResource( 1 )
 
 [node name="Dialogue" parent="Viewport" instance=ExtResource( 4 )]
 
 [node name="Inventory" parent="Viewport" instance=ExtResource( 5 )]
 
 [node name="Quad" type="MeshInstance" parent="."]
-mesh = SubResource( 1 )
-material/0 = SubResource( 5 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
 
 [node name="Area" type="Area" parent="Quad"]
 input_capture_on_drag = true

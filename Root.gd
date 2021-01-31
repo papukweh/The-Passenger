@@ -59,6 +59,22 @@ func _on_Event_Finished(event: String):
 		inventory.add_item(item)
 	elif event == 'go':
 		load_scene('res://scenes/Outside_House.tscn')
+	elif event == 'go_inside':
+		load_scene('res://scenes/Entrance.tscn')
+	elif event == 'go_upstairs':
+		load_scene('res://scenes/Upstairs.tscn')
+	elif event == 'go_living_room':
+		load_scene('res://scenes/Living_Room.tscn')
+	elif event == 'go_kitchen':
+		load_scene('res://scenes/Kitchen.tscn')
+	elif event == 'go_office':
+		load_scene('res://scenes/Office.tscn')
+	elif event == 'go_hallway':
+		load_scene('res://scenes/Hallway.tscn')
+	elif event == 'go_bedroom':
+		load_scene('res://scenes/Bedroom.tscn')
+	elif event == 'go_bathroom':
+		load_scene('res://scenes/Bathroom.tscn')
 
 
 func _on_AnimationPlayer_animation_finished(anim_name: String):

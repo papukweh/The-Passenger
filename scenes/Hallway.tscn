@@ -1,0 +1,59 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/2d/corridor.jpg" type="Texture" id=1]
+[ext_resource path="res://scripts/Clickable.gd" type="Script" id=2]
+[ext_resource path="res://scenes/Hallway.gd" type="Script" id=3]
+
+[node name="Scene" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Objects" type="Node2D" parent="."]
+
+[node name="Bedroom" type="Button" parent="Objects"]
+margin_left = 470.0
+margin_top = 267.0
+margin_right = 499.0
+margin_bottom = 481.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bathroom" type="Button" parent="Objects"]
+margin_left = 628.0
+margin_top = 235.0
+margin_right = 658.0
+margin_bottom = 491.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Door" type="Button" parent="Objects"]
+margin_left = 536.0
+margin_top = 291.0
+margin_right = 593.0
+margin_bottom = 411.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Upstairs" type="Button" parent="Objects"]
+margin_left = 5.0
+margin_top = 525.0
+margin_right = 1079.0
+margin_bottom = 717.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hallway_Background" type="Sprite" parent="."]
+position = Vector2( 566.886, 360.992 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 1 )
+[connection signal="pressed" from="Objects/Bedroom" to="." method="_on_Bedroom_pressed"]
+[connection signal="pressed" from="Objects/Bathroom" to="." method="_on_Bathroom_pressed"]
+[connection signal="pressed" from="Objects/Door" to="." method="_on_Door_pressed"]
+[connection signal="pressed" from="Objects/Upstairs" to="." method="_on_Upstairs_pressed"]

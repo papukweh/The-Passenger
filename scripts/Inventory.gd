@@ -11,8 +11,32 @@ const itens = {
 	'key': {
 		'name': 'Key',
 		'thumbnail': 'res://icon.png', #TODO: CHANGE THIS
-		'correct': 'door',
-		'use_message': ['You managed to unlock the door, at last!']
+		'correct': '???',
+		'use_message': ['???']
+	},
+	'phone': {
+		'name': 'Phone',
+		'thumbnail': 'res://icon.png',
+		'correct': '???',
+		'use_message': ['???']
+	},
+	'bottle': {
+		'name': 'Bottle',
+		'thumbnail': 'res://icon.png',
+		'correct': 'sink',
+		'use_message': [
+			'You throw the acidic solution in the messy sink',
+			"You can now reach something you couldn't before"
+		]
+	},
+	'screwdriver': {
+		'name': 'Screwdriver',
+		'thumbnail': 'res://icon.png',
+		'correct': 'boarded_wall',
+		'use_message': [
+			'You remove the screws, one by one',
+			'The board comes out easily'
+		]
 	}
 }
 
