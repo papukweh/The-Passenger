@@ -12,7 +12,11 @@ const itens = {
 		'name': 'Key',
 		'thumbnail': 'res://assets/2d/textures/key.png',
 		'correct': 'entrance_door',
-		'use_message': ['You manage to unlock the door and escape']
+		'use_message': [
+			"You see the entrance",
+			"'Fuck, I’m so close'",
+			"You finally manage to open the door"
+		]
 	},
 	'paper1': {
 		'name': 'Piece of paper',

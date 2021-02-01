@@ -28,13 +28,20 @@ var events = {
 		'repeat': false,
 		'item': 'paper2'
 	},
+	"acid_reminder": {
+		'dialogue': [
+			'You should pour the solution here first'
+		],
+		'depends_on': null,
+		'repeat': true
+	},
 	'go_safe': {
 		'dialogue': [
 			"You have both sides of the torn paper now",
 			"'Left 17, Right 21, Left 9'",
-			"'Time to go back to the safe'"
+			"'Time to go to open this safe'"
 		],
-		'depends_on': 'bedroom_painting',
+		'depends_on': null,
 		'repeat': false
 	},
 	'safe': {
@@ -42,7 +49,7 @@ var events = {
 			"You finally manage to open the safe"
 		],
 		'item': 'key',
-		'depends_on': 'go_safe',
+		'depends_on': 'can_open_safe',
 		'repeat': false
 	},
 	'chase': {
@@ -62,7 +69,7 @@ var events = {
 		'dialogue': [
 			"You see the entrance",
 			"'Fuck, I’m so close'",
-			"You grab the safe key and finally open the door"
+			"You finally open the door"
 		],
 		'depends_on': 'chase',
 		'repeat': false
@@ -77,10 +84,12 @@ var events = {
 }
 var events_seen = {
 	'wrong_item': false,
+	'acid_reminder': false,
 	'screwdriver': false,
 	'go_safe': false,
 	'can_open_safe': false,
 	'bedroom_painting': false,
+	'entrance_door': false,
 	'safe': false,
 	'chase': false,
 	'escape': false,
@@ -105,7 +114,7 @@ var scenes = {
 }
 
 func _ready():
-	#OS.set_window_size(Vector2(1080, 720))
+	OS.set_window_size(Vector2(1080, 720))
 	set_process(false)
 	dialogue = $GUIPanel3D/Viewport/Dialogue
 	inventory = $GUIPanel3D/Viewport/Inventory
@@ -122,7 +131,8 @@ func load_scene(scene_id: String):
 	yield($GUIPanel3D, "scene_loaded")
 	yield(get_tree(), "idle_frame")
 	var current_scene = $GUIPanel3D.node_base2d.get_child(0)
-	time_left = 30.0
+	print("RESETEI TIMER")
+	time_left = 5.0
 	if not visited.has(scene_id):
 		for k in current_scene.events.keys():
 			events[k] = current_scene.events[k]
@@ -138,27 +148,34 @@ var used_in_sink = false
 var has_paper1 = false
 var has_paper2 = false
 func _Event_Triggered(event: String):
-	if not scene_loaded:
+	if not scene_loaded or $Animation3D.is_playing() or $GUIPanel3D/Viewport/Animation2D.is_playing() or dialogue.in_dialogue:
 		return
-	if event == "entrance_begin" and in_chase:
-		set_process(false)
-		$SFX.stream = load("res://assets/door opening entrance.wav")
-		$SFX.play()
-		_Event_Triggered("escape")
 	if inventory.selected_item:
 		var item = inventory.selected_item
 		if item['correct'] == event:
 			if item['name'] == 'Bottle':
 				used_in_sink = true
 				dialogue.init(event, item['use_message'])
-			elif item['name'] == 'Screwdriver (rusted)' and used_in_sink:
-				dialogue.init('screwdriver', item['use_message'])
-				$SFX.stream = load("res://assets/sfx/acid burn.wav")
-				$SFX.play()
+			elif item['name'] == 'Screwdriver (rusted)': 
+				if used_in_sink:
+					dialogue.init('screwdriver', item['use_message'])
+					$SFX.stream = load("res://assets/sfx/acid burn.wav")
+					$SFX.play()
+				else:
+					dialogue.init('acid_reminder', [
+						'You should pour the solution here first'
+					])
+					dialogue.start()
+					return
 			elif item['name'] == 'Screwdriver':
 				has_paper2 = true
 				dialogue.init('paper2', item['use_message'])
 				$SFX.stream = load("res://assets/sfx/painting slide.wav")
+				$SFX.play()
+			elif item['name'] == 'Key':
+				set_process(false)
+				dialogue.init('escape', item['use_message'])
+				$SFX.stream = load("res://assets/sfx/door opening entrance.wav")
 				$SFX.play()
 			else:
 				dialogue.init(event, item['use_message'])
@@ -170,17 +187,15 @@ func _Event_Triggered(event: String):
 		var depends_on = events[event]['depends_on']
 		var repeat = events[event].get('repeat') or not events_seen[event]
 		var can_play = (not depends_on or events_seen[depends_on]) and repeat
-		if event == 'bedroom_painting' and events_seen['can_open_safe']:
+		if event == 'bedroom_painting':
 			if not events_seen['bedroom_painting']:
 				events_seen['bedroom_painting'] = true
-				_Event_Triggered("bedroom_painting")
-				return
-			_Event_Triggered("safe")
+				dialogue.init("bedroom_painting", events["bedroom_painting"]['dialogue'])
+			elif events_seen["can_open_safe"]:
+				dialogue.init("safe", events["safe"]['dialogue'])
+			dialogue.start()
 			return
-		elif can_play and event == "safe":
-			$SFX.stream = load("res://assets/sfx/safe opening.wav")
-			$SFX.play()
-		if event.begins_with("go") and not can_play:
+		if event.begins_with("go") and not (event == "go" or event == "go_inside") and not can_play:
 			can_play = true
 			events[event]['dialogue'] = [""]
 		print("triggered {e}, can_play {b}".format({'e':event, 'b':can_play}))
@@ -192,7 +207,14 @@ func _Event_Triggered(event: String):
 func _on_Event_Finished(event: String):
 	print("finished event: {e}".format({'e': event}))
 	events_seen[event] = true
+	print("has paper1: "+str(has_paper1))
+	print("has paper2: "+str(has_paper2))
+	if event == "go_safe":
+		has_paper1 = false
+		has_paper2 = false
+		events_seen['can_open_safe'] = true
 	if event == "death":
+		$Timer.wait_time = 3.0
 		$Timer.start()
 		yield($Timer, "timeout")
 		$GUIPanel3D/Viewport/Jumpscare.hide()
@@ -208,31 +230,32 @@ func _on_Event_Finished(event: String):
 				'<Select the item in your inventory and interact to use it>'
 			])
 			first_item = false
-	if event.begins_with("go") and event != "go":
+	if event.begins_with("go") and event != "go" and event != "go_safe":
 		$SFX.stream = load("res://assets/sfx/footsteps wood player.wav")
 		$SFX.play()
 	if event == "bedroom_painting" and events_seen['can_open_safe']:
 		_Event_Triggered("safe")
 	if has_paper1 and has_paper2:
 		_Event_Triggered('go_safe')
-		has_paper1 = false
-		has_paper2 = false
-		events_seen['can_open_safe'] = true
 	elif event == 'escape' or event == 'death':
 		load_scene('credits')
-		$BGM.stream = load("res:/assets/bgm/horror ending song.wav")
+		$BGM.stream = load("res://assets/bgm/horror ending song.wav")
 		$BGM.play()
 	elif event == 'chase':
 		start_chase()
 	elif event == 'safe':
+		$SFX.stream = load("res://assets/sfx/safe opening.wav")
+		$SFX.play()
 		$Animation3D.play("examine_safe")
+		$BGM.stream = load("res://assets/bgm/horror chase song.wav")
+		$BGM.play()
 	elif event == 'go_house':
 		load_scene('outside')
 	elif event == 'go':
 		load_scene('street')
 	elif event == 'go_inside':
 		load_scene('entrance')
-		if $BGM.stream != load("res://assets/bgm/horror chase song.wav"):
+		if not in_chase:
 			$BGM.stream = load("res://assets/bgm/horror ambient song.wav")
 			$BGM.play()
 	elif event == 'go_upstairs':
@@ -266,17 +289,18 @@ func _process(delta):
 	time_left -= delta
 	if time_left <= 0:
 		$SFX.stream = load("res://assets/sfx/intense jumpscare.wav")
+		$SFX.play()
+		$SFX.volume_db = -15
 		$GUIPanel3D/Viewport/Jumpscare.show()
 		_Event_Triggered("death")
+		set_process(false)
 
 func start_chase():
 	in_chase = true
 	sound = "door_open"
 	print("VOU TOCAR ABRIR OPRTA")
-	$SFX.stream = load("res://assets/door open corridor chase.wav")
+	$SFX.stream = load("res://assets/sfx/door open corridor chase.wav")
 	$SFX.play()
-	$BGM.stream = load("res://assets/bgm/horror chase song.wav")
-	$BGM.play()
 	set_process(true)
 
 

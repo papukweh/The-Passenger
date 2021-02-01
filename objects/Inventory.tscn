@@ -143,8 +143,6 @@ margin_bottom = 121.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="mouse_entered" from="CanvasLayer/Outline" to="." method="_on_Outline_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/Outline" to="." method="_on_Outline_mouse_exited"]
 [connection signal="mouse_entered" from="Outside" to="." method="_on_Area2D_mouse_entered"]
 [connection signal="mouse_exited" from="Outside" to="." method="_on_Area2D_mouse_exited"]
 [connection signal="mouse_entered" from="Lower" to="." method="_on_Area2D_mouse_entered"]

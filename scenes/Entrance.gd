@@ -5,22 +5,23 @@ var events_seen = {
 	'entrance_begin': false,
 	'go_kitchen': false,
 	'go_upstairs': false,
-	'go_living_room': false
+	'go_living_room': false,
+	'entrance_door': false
 }
 const events = {
 	'entrance_begin': {
 		'dialogue': [
-			"You are greeted by a dark room with some stairs",
-			"'Damn, it's really dark in here'",
-			"Suddenly, with a gush of wind, the door closes behind you",
-			"'Agh!'",
-			"You try to open it, with no success",
-			"'Damn, it locked itself automatically'",
-			"I'd better call for the passenger",
-			"'HELLO!! ARE YOU HOME??'",
-			"But no one answers",
-			"'What a fucking stint I got myself into'",
-			"'So much for being nice'",
+#			"You are greeted by a dark room with some stairs",
+#			"'Damn, it's really dark in here'",
+#			"Suddenly, with a gush of wind, the door closes behind you",
+#			"'Agh!'",
+#			"You try to open it, with no success",
+#			"'Damn, it locked itself automatically'",
+#			"I'd better call for the passenger",
+#			"'HELLO!! ARE YOU HOME??'",
+#			"But no one answers",
+#			"'What a fucking stint I got myself into'",
+#			"'So much for being nice'",
 			"'I'll just find the key, and then be outta here in no time'"
 		],
 		'depends_on': null,
@@ -46,6 +47,13 @@ const events = {
 		],
 		'depends_on': 'entrance_begin',
 		'repeat': false
+	},
+	'entrance_door': {
+		'dialogue': [
+			"I need to use the key!"
+		],
+		'depends_on': null,
+		'repeat': true
 	}
 }
 
@@ -78,3 +86,7 @@ func _on_Living_Room_pressed():
 
 func _on_Kitchen_pressed():
 	root._Event_Triggered('go_kitchen')
+
+
+func _on_Entrance_Door_pressed():
+	root._Event_Triggered('entrance_door')

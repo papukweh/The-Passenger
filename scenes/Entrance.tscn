@@ -37,6 +37,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Entrance Door" type="Button" parent="Objects"]
+margin_left = 708.0
+margin_top = 583.0
+margin_right = 1108.0
+margin_bottom = 748.0
+flat = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Kitchen" type="Button" parent="Objects"]
 margin_left = 5.0
 margin_top = 13.0
@@ -57,4 +68,5 @@ __meta__ = {
 }
 [connection signal="pressed" from="Objects/Upstairs" to="." method="_on_Upstairs_pressed"]
 [connection signal="pressed" from="Objects/Living Room" to="." method="_on_Living_Room_pressed"]
+[connection signal="pressed" from="Objects/Entrance Door" to="." method="_on_Entrance_Door_pressed"]
 [connection signal="pressed" from="Objects/Kitchen" to="." method="_on_Kitchen_pressed"]

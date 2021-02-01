@@ -17,9 +17,9 @@ texture = ExtResource( 1 )
 
 [node name="Upstairs" type="Button" parent="Objects"]
 margin_left = 3.0
-margin_top = 512.0
+margin_top = 535.0
 margin_right = 1083.0
-margin_bottom = 711.0
+margin_bottom = 639.0
 flat = true
 script = ExtResource( 2 )
 __meta__ = {
