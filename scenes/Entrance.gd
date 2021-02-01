@@ -11,17 +11,17 @@ var events_seen = {
 const events = {
 	'entrance_begin': {
 		'dialogue': [
-#			"You are greeted by a dark room with some stairs",
-#			"'Damn, it's really dark in here'",
-#			"Suddenly, with a gush of wind, the door closes behind you",
-#			"'Agh!'",
-#			"You try to open it, with no success",
-#			"'Damn, it locked itself automatically'",
-#			"I'd better call for the passenger",
-#			"'HELLO!! ARE YOU HOME??'",
-#			"But no one answers",
-#			"'What a fucking stint I got myself into'",
-#			"'So much for being nice'",
+			"You are greeted by a dark room with some stairs",
+			"'Damn, it's really dark in here'",
+			"Suddenly, with a gush of wind, the door closes behind you",
+			"'Agh!'",
+			"You try to open it, with no success",
+			"'Damn, it locked itself automatically'",
+			"I'd better call for the passenger",
+			"'HELLO!! ARE YOU HOME??'",
+			"But no one answers",
+			"'What a fucking stint I got myself into'",
+			"'So much for being nice'",
 			"'I'll just find the key, and then be outta here in no time'"
 		],
 		'depends_on': null,
